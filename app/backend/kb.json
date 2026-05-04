@@ -1,0 +1,52 @@
+[
+  {
+    "id": "phone_pairing_001",
+    "tags": ["bluetooth", "phone", "pairing", "connect"],
+    "content": "To connect your phone via Bluetooth, switch on Bluetooth on your phone, then on the vehicle screen open Settings > Connectivity > Bluetooth. Select your phone from the list, confirm the pairing code on both screens, then allow contacts and messages if you want hands-free calling and messaging."
+  },
+  {
+    "id": "phone_pairing_reset_001",
+    "tags": ["bluetooth", "phone", "pairing", "reset"],
+    "content": "If Bluetooth pairing fails, delete the vehicle from your phone's Bluetooth list and delete the phone from the vehicle's paired devices list. Then restart both the phone and the vehicle system and repeat the pairing process."
+  },
+  {
+    "id": "heated_seats_001",
+    "tags": ["heated seats", "comfort", "climate"],
+    "content": "To turn on heated seats, press the seat heating button on the center console or open the Climate menu and tap the seat icon. You can usually choose low, medium, or high. Use the lowest comfortable setting and switch heating off when you leave the vehicle."
+  },
+  {
+    "id": "lane_assist_001",
+    "tags": ["lane assist", "lane keeping", "driver assistance"],
+    "content": "Lane assist can be enabled from the Driver Assistance or Safety menu. Turn on Lane Keeping or Lane Departure Assistance. The system works only when lane markings are visible and clear. It is a support feature: always keep your hands on the wheel and stay attentive."
+  },
+  {
+    "id": "adaptive_cruise_001",
+    "tags": ["adaptive cruise control", "cruise control"],
+    "content": "Adaptive cruise control lets you set a desired speed and following distance. To use it, accelerate to your desired speed, press the cruise control ON button, then set the speed and distance. The system will adjust your speed to keep a safe gap to the vehicle ahead, but you must always be ready to brake or steer."
+  },
+  {
+    "id": "tire_pressure_001",
+    "tags": ["tire pressure", "warning", "tpms"],
+    "content": "If the tire pressure warning light turns on, safely pull over when possible and visually inspect all tires. Check pressures with a tire gauge and inflate them to the values shown on the label in the driver door area. If the warning stays on, or you see damage, drive slowly to a service center or call roadside assistance."
+  },
+  {
+    "id": "tire_pressure_reset_001",
+    "tags": ["tire pressure", "tpms", "reset"],
+    "content": "After correcting tire pressures, some vehicles require a tire pressure reset. This is usually available under Vehicle Settings > Tire Pressure or TPMS Reset. Only reset the system when you are sure all tires are inflated correctly."
+  },
+  {
+    "id": "ev_efficiency_001",
+    "tags": ["ev", "battery", "efficiency"],
+    "content": "To improve electric vehicle battery efficiency, drive smoothly, avoid hard acceleration and heavy braking, use Eco or efficiency modes, keep tires properly inflated, and precondition the cabin while plugged in so you use less energy while driving."
+  },
+  {
+    "id": "ev_charging_001",
+    "tags": ["ev", "charging"],
+    "content": "For daily use, it is recommended to charge an electric vehicle between about 20% and 80% battery. Use AC charging for regular overnight charging and DC fast charging mainly on long trips. Always follow the limits and recommendations in your vehicle's manual."
+  },
+  {
+    "id": "maintenance_001",
+    "tags": ["maintenance", "service", "warning"],
+    "content": "If you see a red warning symbol, or if the vehicle feels unsafe to drive, stop when it is safe, switch on hazard lights, and contact roadside assistance or a service center. For yellow or orange warnings, consult the owner manual and arrange service as soon as practical."
+  }
+]

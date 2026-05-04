@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# llama.cpp build artifacts
+llama.cpp/build/
+llama.cpp/bin/
+llama.cpp/out/
+
+# Models (large files, downloaded separately)
+models/
+
+# IDE / OS files
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db

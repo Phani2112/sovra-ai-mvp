@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovra AI — Private Embedded Intelligence</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: #e2e8f0;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e40af 0%, #0c4a6e 50%, #0f172a 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid #3b82f6;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #e0f2fe;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #bae6fd;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+      transform: translateY(-2px);
+    }
+
+    section h2 {
+      color: #3b82f6;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2::before {
+      content: '▸';
+      color: #60a5fa;
+    }
+
+    section p {
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    section ul {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+
+    section ul li {
+      padding: 0.8rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: #cbd5e1;
+      border-left: 3px solid #3b82f6;
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    section ul li::before {
+      content: '✓';
+      position: absolute;
+      left: -15px;
+      color: #10b981;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    section ul li strong {
+      color: #60a5fa;
+    }
+
+    #demo-section {
+      background: linear-gradient(135deg, rgba(29, 78, 137, 0.4), rgba(15, 23, 42, 0.4));
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      text-align: center;
+    }
+
+    #demo-section h2 {
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .demo-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      color: white;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      border: 2px solid #3b82f6;
+      margin-top: 1.5rem;
+    }
+
+    .demo-button:hover {
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+    }
+
+    .demo-button:active {
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+      border-top: 2px solid #3b82f6;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    footer p {
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      main {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sovra AI — Private Embedded Intelligence for Vehicles and Enterprises</h1>
+    <p>
+      Run AI locally. Keep data private. Deliver fast, reliable assistance without cloud dependency.
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>What is Sovra AI?</h2>
+      <p>
+        Sovra AI is a local, embedded AI assistant built on top of llama.cpp. It runs entirely on-device
+        or on-premise, so sensitive customer and vehicle data never needs to leave the environment.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why Local and Private?</h2>
+      <ul>
+        <li><strong>Running locally:</strong> All inference happens on this device using a quantized model.</li>
+        <li><strong>No cloud API:</strong> There are no external API calls or third-party services in the loop.</li>
+        <li><strong>Private by design:</strong> Vehicle and driver data stay within the car or local network.</li>
+        <li><strong>Powered by llama.cpp:</strong> Uses an efficient C++ inference engine optimized for CPUs and embedded hardware.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Automotive Assistant Use Cases</h2>
+      <ul>
+        <li><strong>Owner's Manual Q&A:</strong> Ask questions about vehicle features, maintenance, and troubleshooting.</li>
+        <li><strong>In-Car Assistant:</strong> Get help with navigation, entertainment, and vehicle controls.</li>
+        <li><strong>Fleet Management:</strong> Provide drivers with instant access to fleet policies and support.</li>
+      </ul>
+      <p>
+        Sovra AI uses a small local knowledge base with owner manual style content to answer these questions
+        in a safe, concise way.
+      </p>
+    </section>
+
+    <section id="demo-section">
+      <h2>Try the Demo</h2>
+      <p>
+        Open the in-car assistant demo to chat with Sovra AI running locally on this laptop.
+      </p>
+      <a href="chat.html" class="demo-button">Open Sovra AI Demo</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Local demo — all requests stay on 127.0.0.1 between the browser, backend, and llama.cpp.</p>
+  </footer>
+</body>
+</html>

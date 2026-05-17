@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from retriever import retrieve_snippets
 import requests
+import json
 
 app = FastAPI()
 
@@ -37,10 +38,23 @@ def health():
     return {"status": "ok"}
 
 
+@app.post("/api/debug/snippets")
+def debug_snippets(req: ChatRequest):
+    """Debug endpoint to see what snippets are retrieved for a query."""
+    snippets = retrieve_snippets(req.message)
+    return {"query": req.message, "snippets": snippets}
+
+
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     snippets = retrieve_snippets(req.message)
     kb_text = "\n\n".join(snippets)
+
+    print(f"\n=== Chat Request ===")
+    print(f"User question: {req.message}")
+    print(f"Retrieved {len(snippets)} snippets")
+    for i, snippet in enumerate(snippets, 1):
+        print(f"Snippet {i}: {snippet[:100]}...")
 
     system_prefix = (
         "You are Sovra AI, a private in-car assistant running locally in the vehicle. "
@@ -57,6 +71,9 @@ def chat(req: ChatRequest):
         "prompt": system_prefix + f"Driver question: {req.message}\nAssistant:",
         "n_predict": 256,
     }
+
+    print(f"Full prompt length: {len(payload['prompt'])} chars")
+    print(f"=== End Debug ===\n")
 
     try:
         r = requests.post(f"{LLAMA_SERVER_URL}/completion",

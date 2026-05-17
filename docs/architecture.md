@@ -23,7 +23,7 @@ FastAPI Backend (main.py, port 8000)
 
           |
           v
-
+ 
   FastAPI Backend
 
 - Wraps LLM response as JSON: {"reply": "..."}

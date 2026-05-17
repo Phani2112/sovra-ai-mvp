@@ -1,264 +1,637 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sovra AI — Private Embedded Intelligence</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovra AI | Local Automotive Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #080a0d;
+      --bg-soft: #0e1218;
+      --panel: rgba(255,255,255,0.04);
+      --panel-strong: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+      --text: #f3f7fb;
+      --muted: #98a4b3;
+      --accent: #79e6ff;
+      --accent-2: #8b5cf6;
+      --success: #7ef0b8;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --radius: 22px;
+      --max: 1200px;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-      color: #e2e8f0;
-      line-height: 1.6;
-      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(121, 230, 255, 0.08), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 24%),
+        linear-gradient(180deg, #07090c 0%, #0a0d12 100%);
+      color: var(--text);
+      line-height: 1.5;
     }
 
-    header {
-      background: linear-gradient(135deg, #1e40af 0%, #0c4a6e 50%, #0f172a 100%);
-      padding: 4rem 2rem;
-      text-align: center;
-      border-bottom: 2px solid #3b82f6;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 10, 13, 0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: 20px;
+    }
+
+    .brand-mark {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(121, 230, 255, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(121,230,255,0.16), rgba(139,92,246,0.14));
+      border-color: rgba(121,230,255,0.25);
+      box-shadow: 0 10px 40px rgba(121, 230, 255, 0.08);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 50px rgba(121, 230, 255, 0.12);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #c9d5e1;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(126, 240, 184, 0.7);
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      max-width: 11ch;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 56ch;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .meta-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: #c5cfda;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    header::before {
-      content: '';
+    .hero-card::after {
+      content: "";
       position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: rgba(59, 130, 246, 0.1);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
+      inset: auto -50px -50px auto;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(121,230,255,0.24), transparent 65%);
+      filter: blur(10px);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+    .terminal {
+      background: #07090c;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #e0f2fe;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 1;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #bae6fd;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
-
-    section {
-      background: rgba(30, 41, 59, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    section:hover {
-      border-color: rgba(59, 130, 246, 0.5);
-      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
-      transform: translateY(-2px);
-    }
-
-    section h2 {
-      color: #3b82f6;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+    .terminal-top {
       display: flex;
-      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .terminal-body {
+      padding: 18px;
+      font-size: 13px;
+      color: #d7e2ee;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      display: grid;
       gap: 10px;
     }
 
-    section h2::before {
-      content: '▸';
-      color: #60a5fa;
+    .prompt {
+      color: var(--accent);
     }
 
-    section p {
-      color: #cbd5e1;
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
+    section {
+      padding: 44px 0 72px;
     }
 
-    section ul {
-      list-style: none;
-      margin-bottom: 1rem;
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 26px;
     }
 
-    section ul li {
-      padding: 0.8rem 0;
-      padding-left: 2rem;
-      position: relative;
-      color: #cbd5e1;
-      border-left: 3px solid #3b82f6;
-      margin-bottom: 0.5rem;
-      padding-left: 1.5rem;
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
     }
 
-    section ul li::before {
-      content: '✓';
-      position: absolute;
-      left: -15px;
-      color: #10b981;
-      font-weight: bold;
-      font-size: 1.2rem;
+    .section-head p {
+      color: var(--muted);
+      max-width: 56ch;
+      justify-self: end;
     }
 
-    section ul li strong {
-      color: #60a5fa;
+    .cta {
+      padding: 84px 0 100px;
     }
 
-    #demo-section {
-      background: linear-gradient(135deg, rgba(29, 78, 137, 0.4), rgba(15, 23, 42, 0.4));
-      border: 2px solid rgba(59, 130, 246, 0.3);
+    .cta-box {
+      background:
+        radial-gradient(circle at top left, rgba(121,230,255,0.11), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(139,92,246,0.11), transparent 25%),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 42px;
+      box-shadow: var(--shadow);
       text-align: center;
     }
 
-    #demo-section h2 {
-      justify-content: center;
-      margin-bottom: 2rem;
+    .cta-box h2 {
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
     }
 
-    .demo-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-      color: white;
-      padding: 1rem 2.5rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
+    .cta-box p {
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 auto 26px;
+    }
+
+    .demo-form {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
       font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-      border: 2px solid #3b82f6;
-      margin-top: 1.5rem;
+      color: var(--text);
     }
 
-    .demo-button:hover {
-      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      transition: 0.2s ease;
     }
 
-    .demo-button:active {
-      transform: translateY(-1px);
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px 22px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, rgba(121,230,255,0.16), rgba(139,92,246,0.14));
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.25s ease;
+      margin-top: 10px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(121,230,255,0.1);
     }
 
     footer {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
-      border-top: 2px solid #3b82f6;
-      padding: 2rem;
-      text-align: center;
-      margin-top: 3rem;
-      color: #94a3b8;
-      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 24px 0 36px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    footer p {
-      color: #cbd5e1;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8rem;
+    .features {
+      padding: 72px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 28px;
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-card:hover {
+      background: linear-gradient(135deg, rgba(121,230,255,0.08), rgba(139,92,246,0.06));
+      border-color: rgba(121,230,255,0.2);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 28px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
       }
 
-      header p {
-        font-size: 1rem;
+      .nav-links {
+        display: none;
       }
 
-      section {
-        padding: 1.5rem;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-
-      main {
-        padding: 0 1rem;
+      .hero {
+        padding-top: 72px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sovra AI — Private Embedded Intelligence for Vehicles and Enterprises</h1>
-    <p>
-      Run AI locally. Keep data private. Deliver fast, reliable assistance without cloud dependency.
-    </p>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"></span>
+        <span>Sovra AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="chat.html" class="btn btn-primary">Try Sovra AI</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Running locally with private, low-latency inference</div>
+        <h1>Automotive AI, built for local deployment.</h1>
+        <p>
+          A lightweight assistant for automotive support workflows, combining a premium web interface,
+          local inference, and simple architecture designed for laptop demos and explainable deployment.
+        </p>
+        <div class="hero-actions">
+          <a href="chat.html" class="btn btn-primary">Try Sovra AI</a>
+          <a href="#demo-form" class="btn btn-secondary">Request Demo</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-chip">llama.cpp-based inference</div>
+          <div class="meta-chip">Laptop-friendly quantized model</div>
+          <div class="meta-chip">FastAPI backend</div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="terminal">
+          <div class="terminal-top">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="terminal-body">
+            <div><span class="prompt">$</span> sovra --local --port 8000</div>
+            <div>Starting automotive AI assistant...</div>
+            <div>• Using local llama.cpp inference</div>
+            <div>• FastAPI server running on localhost:8000</div>
+            <div>• Web UI ready for connection</div>
+            <div style="color: #7ef0b8;">✓ Ready for your queries</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>What is Sovra AI?</h2>
-      <p>
-        Sovra AI is a local, embedded AI assistant built on top of llama.cpp. It runs entirely on-device
-        or on-premise, so sensitive customer and vehicle data never needs to leave the environment.
-      </p>
-    </section>
+  <section class="features">
+    <div class="container">
+      <h2 style="text-align: center; font-size: clamp(28px, 4vw, 48px); margin-bottom: 50px; letter-spacing: -0.05em;">Why Choose Sovra AI</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Private Local Inference</h3>
+          <p>All processing happens on your machine. No data is sent to external servers—complete privacy and control.</p>
+        </div>
 
-    <section>
-      <h2>Why Local and Private?</h2>
-      <ul>
-        <li><strong>Running locally:</strong> All inference happens on this device using a quantized model.</li>
-        <li><strong>No cloud API:</strong> There are no external API calls or third-party services in the loop.</li>
-        <li><strong>Private by design:</strong> Vehicle and driver data stay within the car or local network.</li>
-        <li><strong>Powered by llama.cpp:</strong> Uses an efficient C++ inference engine optimized for CPUs and embedded hardware.</li>
-      </ul>
-    </section>
+        <div class="feature-card">
+          <h3>Low Latency</h3>
+          <p>Sub-100ms response times with local inference. No network delays, instant automotive intelligence at your fingertips.</p>
+        </div>
 
-    <section>
-      <h2>Automotive Assistant Use Cases</h2>
-      <ul>
-        <li><strong>Owner's Manual Q&A:</strong> Ask questions about vehicle features, maintenance, and troubleshooting.</li>
-        <li><strong>In-Car Assistant:</strong> Get help with navigation, entertainment, and vehicle controls.</li>
-        <li><strong>Fleet Management:</strong> Provide drivers with instant access to fleet policies and support.</li>
-      </ul>
-      <p>
-        Sovra AI uses a small local knowledge base with owner manual style content to answer these questions
-        in a safe, concise way.
-      </p>
-    </section>
+        <div class="feature-card">
+          <h3>Lightweight Model</h3>
+          <p>Quantized model runs efficiently on standard laptops. No GPU required—works on CPU with minimal resource consumption.</p>
+        </div>
 
-    <section id="demo-section">
-      <h2>Try the Demo</h2>
-      <p>
-        Open the in-car assistant demo to chat with Sovra AI running locally on this laptop.
-      </p>
-      <a href="chat.html" class="demo-button">Open Sovra AI Demo</a>
-    </section>
-  </main>
+        <div class="feature-card">
+          <h3>Easy Deployment</h3>
+          <p>Single command startup with llama.cpp and FastAPI. Deploy in minutes, no complex infrastructure or DevOps expertise needed.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>No API Costs</h3>
+          <p>Run completely independently without relying on expensive cloud AI APIs. Control your own operating costs.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Full Control</h3>
+          <p>Customize model parameters, fine-tune for specific workflows, and modify behavior without third-party constraints.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Try Sovra AI Today</h2>
+        <p>Experience seamless automotive intelligence with private, local inference. No external dependencies, complete control.</p>
+        <a href="chat.html" class="btn btn-primary">Start Chat</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo-form" class="cta">
+    <div class="container">
+      <h2 style="text-align: center; font-size: clamp(28px, 4vw, 48px); margin-bottom: 40px;">Request a Demo</h2>
+      <form class="demo-form" onsubmit="handleDemoSubmit(event)">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company Name *</label>
+          <input type="text" id="company" name="company" required>
+        </div>
+
+        <div class="form-group">
+          <label for="usecase">Use Case / Interest *</label>
+          <select id="usecase" name="usecase" required style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--text); font-family: inherit; font-size: 14px;">
+            <option value="">Select an option...</option>
+            <option value="automotive-support">Automotive Support</option>
+            <option value="dealer-integration">Dealer Integration</option>
+            <option value="fleet-management">Fleet Management</option>
+            <option value="research">Research & Development</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Additional Information</label>
+          <textarea id="message" name="message" placeholder="Tell us about your needs..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Request Demo</button>
+      </form>
+    </div>
+  </section>
 
   <footer>
-    <p>Local demo — all requests stay on 127.0.0.1 between the browser, backend, and llama.cpp.</p>
+    <div class="container footer-inner">
+      <div>&copy; 2026 Sovra AI. All rights reserved.</div>
+      <div>Private, local, and always in control.</div>
+    </div>
   </footer>
+
+  <script>
+    function handleDemoSubmit(event) {
+      event.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        usecase: document.getElementById('usecase').value,
+        message: document.getElementById('message').value
+      };
+
+      // Create email body
+      const emailBody = `
+Demo Request from Sovra AI Website
+
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company}
+Use Case: ${formData.usecase}
+Message: ${formData.message}
+      `.trim();
+
+      // Send email via mailto
+      window.location.href = `mailto:phanidatta2112@gmail.com?subject=Demo Request from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Reset form
+      event.target.reset();
+      alert('Thank you for your interest! Your email client will open to send the demo request.');
+    }
+  </script>
 </body>
 </html>

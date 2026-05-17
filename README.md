@@ -112,16 +112,16 @@ You need **three things running**: model server, backend, and frontend.
 ### 4.1 Start llama.cpp model server
 
 ```powershell
-cd F:\sovra-ai-mvp\llama.cpp
+cd .\llama.cpp
 .\build\bin\Release\llama-server.exe -m ..\models\Qwen2.5-7B-Instruct-Q4_K_M.gguf -c 2048
 ```
 
-You should see logs including: “server is listening on http://127.0.0.1:8080”.
+You should see logs including: `server is listening on http://127.0.0.1:8080`. 
 
 ### 4.2 Start FastAPI backend
 
 ```powershell
-cd F:\sovra-ai-mvp\app\backend
+cd .\app\backend
 .\venv\Scripts\activate
 uvicorn main:app --reload --port 8000
 ```
@@ -130,6 +130,7 @@ Check health:
 
 ```powershell
 curl http://127.0.0.1:8000/health
+```
 
 You should see: {"status":"ok"}
 
